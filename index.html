@@ -4,37 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz App</title>
-  <link href="styles.css" rel="stylesheet">
+  <!-- Cirrus CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/@cirrus-ui/core@0.7.1/dist/cirrus.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
 </head>
-<body class="bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-800 font-poppins min-h-screen">
-  <header class="p-4 shadow-lg flex justify-between items-center bg-white dark:bg-gray-800 rounded-lg mx-4 mt-4">
-    <h1 class="text-xl font-bold text-gray-800 dark:text-white">Quiz App</h1>
-    <button id="theme-toggle" class="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg">
-      <img id="theme-icon" src="assets/light-icon.svg" alt="Toggle Theme" class="h-6">
-    </button>
+<body class="cirrus light-theme">
+  <header class="header shadow--md">
+    <div class="header-content flex justify-between align-center">
+      <h1 class="header-title">Quiz App</h1>
+      <button id="theme-toggle" class="btn btn--primary-outline">
+        <img id="theme-icon" src="assets/light-icon.svg" alt="Toggle Theme" class="icon">
+      </button>
+    </div>
   </header>
 
-  <main class="p-4">
+  <main class="container mx-auto mt-4 p-3">
     <!-- Branch Selector -->
-    <div class="glass-card">
-      <label for="branch" class="block text-gray-800 dark:text-white mb-2">Select Branch</label>
-      <select id="branch" class="dropdown"></select>
+    <div class="card glass mb-3">
+      <div class="card-content">
+        <label for="branch" class="form-label">Select Branch</label>
+        <select id="branch" class="form-input"></select>
+      </div>
     </div>
 
     <!-- Semester Selector -->
-    <div class="glass-card mt-4">
-      <label for="semester" class="block text-gray-800 dark:text-white mb-2">Select Semester</label>
-      <select id="semester" class="dropdown" disabled></select>
+    <div class="card glass mb-3">
+      <div class="card-content">
+        <label for="semester" class="form-label">Select Semester</label>
+        <select id="semester" class="form-input" disabled></select>
+      </div>
     </div>
 
     <!-- Chapter Selector -->
-    <div class="glass-card mt-4">
-      <label for="chapter" class="block text-gray-800 dark:text-white mb-2">Select Chapter</label>
-      <select id="chapter" class="dropdown" disabled></select>
+    <div class="card glass mb-3">
+      <div class="card-content">
+        <label for="chapter" class="form-label">Select Chapter</label>
+        <select id="chapter" class="form-input" disabled></select>
+      </div>
     </div>
 
-    <!-- Questions Container -->
-    <div id="questions-container" class="mt-6"></div>
+    <!-- Questions -->
+    <div id="questions-container"></div>
   </main>
 
   <script src="script.js"></script>
