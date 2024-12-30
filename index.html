@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz App</title>
+  <title>BEU PYQs</title>
   <script src="https://cdn.jsdelivr.net/npm/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel = "stylesheet"  href = "index.css" />
@@ -24,14 +24,14 @@
           <div class="mb-4">
             <label for="branch" class="block text-lg font-medium mb-2">Select Branch</label>
             <select id="branch" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <option value="" disabled selected>Select Branch</option>
+              <option value="" disabled selected>Konse Branch se ho ?</option>
             </select>
           </div>
       
           <div class="mb-4">
             <label for="semester" class="block text-lg font-medium mb-2">Select Semester</label>
             <select id="semester" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
-              <option value="" disabled selected>Select Semester</option>
+              <option value="" disabled selected>Semester batao babua</option>
             </select>
           </div>
       
@@ -49,8 +49,8 @@
       <div class="questions-view hidden">
         <div id="question-container" class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
           <p id="question-text" class="text-lg"></p>
-          <button id="prev-question" class="px-4 py-2 bg-gray-500 text-white rounded-lg mr-2">Previous Question</button>
-          <button id="next-question" class="px-4 py-2 bg-gray-500 text-white rounded-lg">Next Question</button>
+          <button id="prev-question" class="px-4 py-2 bg-gray-500 text-white rounded-lg mr-2">Prev</button>
+          <button id="next-question" class="px-4 py-2 bg-gray-500 text-white rounded-lg">Nxt </button>
           <button id="show-solution" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg">Show Solution</button>
           <div id="solution" class="hidden mt-3 p-3 border-t border-gray-300"></div>
         </div>
