@@ -1,61 +1,73 @@
-// Dummy Question Data (this would usually be dynamic, based on selected chapter)
-const quizData = {
-  "chapter1": [
-    { 
-      "question_id": 1,
-      "question_text": "Define the following terms with examples: a) Morpheme b) Prefix c) Homograms d) Auxiliary Verb e) IPA",
-      "solution": "A morpheme is the smallest unit of meaning in language."
-    },
-    { 
-      "question_id": 2,
-      "question_text": "What is the root word of 'unbreakable'?",
-      "solution": "The root word is 'break'."
-    }
-  ],
-  "chapter2": [
-    { 
-      "question_id": 1,
-      "question_text": "What is a synonym for 'difficult'?",
-      "solution": "A synonym for difficult is 'hard'."
-    }
-  ]
-};
+// Fetching JSON data
+let quizData;
 
-// Event listener to show questions based on chapter selection
-document.getElementById('chapter').addEventListener('change', function() {
-  const selectedChapter = this.value;
-  displayQuestions(selectedChapter);
-});
-
-// Function to display questions for the selected chapter
-function displayQuestions(chapter) {
-  const questionsContainer = document.getElementById('questions-container');
-  questionsContainer.innerHTML = ""; // Clear previous questions
-  
-  const selectedQuestions = quizData[chapter];
-  if (!selectedQuestions) return; // If no questions for selected chapter
-
-  selectedQuestions.forEach(question => {
-    // Create a question card with "Show Solution" button
-    const questionCard = document.createElement('div');
-    questionCard.classList.add('question-card');
-    
-    const questionContent = `
-      <p>${question.question_id}. ${question.question_text}</p>
-      <button class="show-solution" onclick="showSolution(${question.question_id})">Show Solution</button>
-      <div id="solution-${question.question_id}" class="solution-text">${question.solution}</div>
-    `;
-    
-    questionCard.innerHTML = questionContent;
-    questionsContainer.appendChild(questionCard);
+fetch("questions.json")
+  .then(response => response.json())
+  .then(data => {
+    quizData = data;
+    populateBranchDropdown();
   });
+
+const branchDropdown = document.getElementById("branch");
+const semesterDropdown = document.getElementById("semester");
+const chapterDropdown = document.getElementById("chapter");
+const questionsContainer = document.getElementById("questions-container");
+
+// Populate branch dropdown
+function populateBranchDropdown() {
+  const branches = Object.keys(quizData.branches);
+  branchDropdown.innerHTML = branches.map(branch => `<option value="${branch}">${branch}</option>`).join("");
+  branchDropdown.addEventListener("change", populateSemesterDropdown);
+}
+
+// Populate semester dropdown
+function populateSemesterDropdown() {
+  const branch = branchDropdown.value;
+  semesterDropdown.innerHTML = "";
+  semesterDropdown.disabled = false;
+
+  const semesters = Object.keys(quizData.branches[branch].semesters);
+  semesterDropdown.innerHTML = semesters.map(sem => `<option value="${sem}">${sem}</option>`).join("");
+  semesterDropdown.addEventListener("change", populateChapterDropdown);
+}
+
+// Populate chapter dropdown
+function populateChapterDropdown() {
+  const branch = branchDropdown.value;
+  const semester = semesterDropdown.value;
+  chapterDropdown.innerHTML = "";
+  chapterDropdown.disabled = false;
+
+  const chapters = Object.keys(quizData.branches[branch].semesters[semester].chapters);
+  chapterDropdown.innerHTML = chapters.map(chap => `<option value="${chap}">${chap}</option>`).join("");
+  chapterDropdown.addEventListener("change", displayQuestions);
+}
+
+// Display questions
+function displayQuestions() {
+  const branch = branchDropdown.value;
+  const semester = semesterDropdown.value;
+  const chapter = chapterDropdown.value;
+
+  const questions = quizData.branches[branch].semesters[semester].chapters[chapter];
+  questionsContainer.innerHTML = questions.map(q => `
+    <div class="question-card">
+      <p>${q.question_id}. ${q.question_text}</p>
+      <button class="show-solution" onclick="toggleSolution(${q.question_id})">Show Solution</button>
+      <p id="solution-${q.question_id}" style="display:none;">${q.solution}</p>
+    </div>
+  `).join("");
 }
 
 // Toggle solution visibility
-function showSolution(questionId) {
+function toggleSolution(questionId) {
   const solutionElement = document.getElementById(`solution-${questionId}`);
-  solutionElement.style.display = solutionElement.style.display === "none" || solutionElement.style.display === "" ? "block" : "none";
+  solutionElement.style.display = solutionElement.style.display === "none" ? "block" : "none";
 }
 
-// Initial call to populate questions for Chapter 1
-document.addEventListener("DOMContentLoaded", () => displayQuestions("chapter1"));
+// Theme toggle
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  const themeIcon = document.getElementById("theme-icon");
+  themeIcon.src = document.body.classList.contains("dark-mode") ? "assets/dark-icon.svg" : "assets/light-icon.svg";
+});
