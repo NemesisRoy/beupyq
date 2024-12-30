@@ -1,69 +1,83 @@
-/* Base styles */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Font Style */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Theme variables */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --card-bg: #f8f8f8;
-  --button-bg: #007bff;
+/* Glass Morphism Card */
+.glass-card {
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px;
 }
 
-.dark-mode {
-  --bg-color: #121212;
-  --text-color: #ffffff;
-  --card-bg: #1e1e1e;
-  --button-bg: #444444;
-}
-
-/* Header styles */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--card-bg);
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Dropdowns */
-.dropdown-container {
-  margin: 1rem 0;
-}
-
+/* Dropdown Styles */
 .dropdown {
   width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-/* Questions */
-.questions-container {
-  margin-top: 2rem;
-}
-
-.question-card {
-  background-color: var(--card-bg);
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(200, 200, 200, 0.7);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
+  outline: none;
+  transition: all 0.3s;
 }
 
-/* Solution button */
+.dropdown:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.dark .dropdown {
+  background-color: rgba(50, 50, 50, 0.8);
+  color: #fff;
+}
+
+/* Question Card */
+.question-card {
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.dark .question-card {
+  background-color: rgba(30, 30, 30, 0.8);
+  color: #fff;
+}
+
+/* Solution Button */
 .show-solution {
-  background-color: var(--button-bg);
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.show-solution:hover {
+  background-color: #0056b3;
+}
+
+.dark .show-solution {
+  background-color: #444;
+}
+
+.dark .show-solution:hover {
+  background-color: #222;
 }
