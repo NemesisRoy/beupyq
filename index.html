@@ -6,11 +6,7 @@
   <title>Quiz App</title>
   <script src="https://cdn.jsdelivr.net/npm/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-  </style>
+  <link rel = "stylesheet"  href = "index.css" />
 </head>
 <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
   <div class="min-h-screen flex flex-col justify-center items-center py-6 px-4 sm:px-6 lg:px-8">
@@ -20,122 +16,50 @@
     </button>
 
     <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 max-w-lg w-full space-y-6">
-      <h1 class="text-center text-2xl font-semibold">Select Your Quiz Options</h1>
+      <h1 class="text-center text-2xl font-semibold">BEU Chapterwise PYQs</h1>
 
-      <!-- Branch Dropdown -->
-      <div class="mb-4">
-        <label for="branch" class="block text-lg font-medium mb-2">Select Branch</label>
-        <select id="branch" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="" disabled selected>Select Branch</option>
-        </select>
+      <div class="pyqs-setup">
+        <!-- Branch and Semester Selection -->
+        <div class="dropdown-container">
+          <div class="mb-4">
+            <label for="branch" class="block text-lg font-medium mb-2">Select Branch</label>
+            <select id="branch" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="" disabled selected>Select Branch</option>
+            </select>
+          </div>
+      
+          <div class="mb-4">
+            <label for="semester" class="block text-lg font-medium mb-2">Select Semester</label>
+            <select id="semester" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+              <option value="" disabled selected>Select Semester</option>
+            </select>
+          </div>
+      
+          <button id="get-pyqs" class="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300">
+            Get PYQs
+          </button>
+        </div>
       </div>
-
-      <!-- Semester Dropdown -->
-      <div class="mb-4">
-        <label for="semester" class="block text-lg font-medium mb-2">Select Semester</label>
-        <select id="semester" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
-          <option value="" disabled selected>Select Semester</option>
-        </select>
+      
+      <div class="chapter-list hidden">
+        <h2 class="text-center text-2xl font-semibold mb-4">Select Chapter</h2>
+        <ul id="chapter-list" class="list-none"></ul>
       </div>
-
-      <!-- Chapter Dropdown -->
-      <div class="mb-4">
-        <label for="chapter" class="block text-lg font-medium mb-2">Select Chapter</label>
-        <select id="chapter" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
-          <option value="" disabled selected>Select Chapter</option>
-        </select>
+      
+      <div class="questions-view hidden">
+        <div id="question-container" class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+          <p id="question-text" class="text-lg"></p>
+          <button id="prev-question" class="px-4 py-2 bg-gray-500 text-white rounded-lg mr-2">Previous Question</button>
+          <button id="next-question" class="px-4 py-2 bg-gray-500 text-white rounded-lg">Next Question</button>
+          <button id="show-solution" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg">Show Solution</button>
+          <div id="solution" class="hidden mt-3 p-3 border-t border-gray-300"></div>
+        </div>
       </div>
-
-      <!-- Start Quiz Button -->
-      <div class="flex justify-center">
-        <button id="start-quiz" class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300">
-          Start Quiz
-        </button>
-      </div>
-
-    </div>
-
+      
     <!-- Questions Container -->
     <div id="questions-container" class="hidden mt-8 max-w-lg w-full"></div>
   </div>
 
-  <script>
-    const branchDropdown = document.getElementById("branch");
-    const semesterDropdown = document.getElementById("semester");
-    const chapterDropdown = document.getElementById("chapter");
-    const questionsContainer = document.getElementById("questions-container");
-    const themeToggle = document.getElementById("theme-toggle");
-
-    // Fetch data from questions.json
-    fetch('questions.json')
-      .then(response => response.json())
-      .then(data => initializeQuiz(data));
-
-    function initializeQuiz(quizData) {
-      populateBranches(quizData);
-    }
-
-    function populateBranches(data) {
-      const branches = Object.keys(data.branches);
-      branchDropdown.innerHTML += branches.map(branch => `<option value="${branch}">${capitalize(branch)}</option>`).join("");
-      branchDropdown.addEventListener("change", () => populateSemesters(data));
-    }
-
-    function populateSemesters(data) {
-      semesterDropdown.disabled = false;
-      const branch = branchDropdown.value;
-      const semesters = Object.keys(data.branches[branch].semesters);
-      semesterDropdown.innerHTML = `<option value="" disabled selected>Select Semester</option>` +
-        semesters.map(sem => `<option value="${sem}">${capitalize(sem)}</option>`).join("");
-      semesterDropdown.addEventListener("change", () => populateChapters(data));
-    }
-
-    function populateChapters(data) {
-      chapterDropdown.disabled = false;
-      const branch = branchDropdown.value;
-      const semester = semesterDropdown.value;
-      const chapters = Object.keys(data.branches[branch].semesters[semester].chapters);
-      chapterDropdown.innerHTML = `<option value="" disabled selected>Select Chapter</option>` +
-        chapters.map(chap => `<option value="${chap}">${capitalize(chap)}</option>`).join("");
-      chapterDropdown.addEventListener("change", () => displayQuestions(data));
-    }
-
-    function displayQuestions(data) {
-      questionsContainer.classList.remove("hidden");
-      questionsContainer.innerHTML = "";
-      const branch = branchDropdown.value;
-      const semester = semesterDropdown.value;
-      const chapter = chapterDropdown.value;
-      const questions = data.branches[branch].semesters[semester].chapters[chapter];
-
-      questions.forEach(q => {
-        questionsContainer.innerHTML += `
-          <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md mb-4">
-            <p class="font-semibold">Q${q.question_id}: ${q.question_text}</p>
-            <button class="mt-2 text-blue-500" onclick="toggleSolution(${q.question_id})">
-              Show Solution
-            </button>
-            <div id="solution-${q.question_id}" class="solution mt-3 hidden">
-              <p>${q.solution}</p>
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    function toggleSolution(id) {
-      const solution = document.getElementById(`solution-${id}`);
-      solution.classList.toggle("hidden");
-    }
-
-    function capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
-    // Theme Toggle
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
