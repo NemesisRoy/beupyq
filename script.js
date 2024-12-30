@@ -31,7 +31,7 @@ fetch("questions.json")
 // Populate Branch Dropdown
 function populateBranchDropdown() {
   const branches = Object.keys(quizData.branches);
-  branchDropdown.innerHTML = `<option value="" disabled selected>Select Branch</option>` +
+  branchDropdown.innerHTML = `<option value="" disabled selected>Konse Branch se ho ?</option>` +
     branches.map(branch => `<option value="${branch}">${capitalize(branch)}</option>`).join("");
   
   branchDropdown.addEventListener("change", () => {
@@ -45,7 +45,7 @@ function populateSemesterDropdown() {
   const branch = branchDropdown.value;
   const semesters = Object.keys(quizData.branches[branch].semesters);
 
-  semesterDropdown.innerHTML = `<option value="" disabled selected>Select Semester</option>` +
+  semesterDropdown.innerHTML = `<option value="" disabled selected>Semester bhi bata do</option>` +
     semesters.map(sem => `<option value="${sem}">${capitalize(sem)}</option>`).join("");
 }
 
@@ -102,10 +102,10 @@ function displayQuestion() {
     <div class="navigation-buttons flex justify-between mb-4">
       <button id="prev-question" class="px-4 py-2 bg-gray-500 text-white rounded-md" ${
         currentQuestionIndex === 0 ? "disabled" : ""
-      }>Previous Question</button>
+      }>Prev</button>
       <button id="next-question" class="px-4 py-2 bg-blue-500 text-white rounded-md" ${
         currentQuestionIndex === currentQuestions.length - 1 ? "disabled" : ""
-      }>Next Question</button>
+      }>Next</button>
     </div>
 
     <div class="question-text mb-4">
