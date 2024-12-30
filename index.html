@@ -3,35 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapterwise PYQs</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Quiz App</title>
+  <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
-  <h1>Chapterwise PYQs</h1>
+  <div class="quiz-container">
+    <h1 class="quiz-title">Quiz App</h1>
+
+    <!-- Branch Selection -->
+    <div class="dropdown-container">
+      <label for="branch" class="dropdown-label">Select Branch</label>
+      <select id="branch" class="dropdown">
+        <option value="civil">Civil</option>
+        <option value="ece">ECE</option>
+        <option value="cse">CSE</option>
+        <option value="ee">EE</option>
+        <option value="mech">Mechanical</option>
+      </select>
+    </div>
+
+    <!-- Semester Selection -->
+    <div class="dropdown-container">
+      <label for="semester" class="dropdown-label">Select Semester</label>
+      <select id="semester" class="dropdown">
+        <option value="sem1">Semester 1</option>
+        <option value="sem2">Semester 2</option>
+        <option value="sem3">Semester 3</option>
+        <option value="sem4">Semester 4</option>
+        <option value="sem5">Semester 5</option>
+        <option value="sem6">Semester 6</option>
+        <option value="sem7">Semester 7</option>
+        <option value="sem8">Semester 8</option>
+      </select>
+    </div>
+
+    <!-- Chapter Selection -->
+    <div class="dropdown-container">
+      <label for="chapter" class="dropdown-label">Select Chapter</label>
+      <select id="chapter" class="dropdown">
+        <option value="chapter1">Chapter 1</option>
+        <option value="chapter2">Chapter 2</option>
+        <option value="chapter3">Chapter 3</option>
+      </select>
+    </div>
+
+    <!-- Questions Section -->
+    <div id="questions-container" class="questions-container">
+      <!-- Questions will be dynamically inserted here -->
+    </div>
+
+  </div>
   
-  <!-- Branch Dropdown -->
-  <label for="branch">Select your Branch:</label>
-  <select id="branch">
-    <option value="">--Select Branch--</option>
-    <option value="civil">Civil</option>
-    <option value="ece">ECE</option>
-    <option value="cse">CSE</option>
-    <option value="ee">Electrical</option>
-    <option value="mech">Mechanical</option>
-  </select>
-
-  <!-- Semester Dropdown -->
-  <label for="semester">Select your Semester:</label>
-  <select id="semester" disabled>
-    <option value="">--Select Semester--</option>
-    <!-- Options will be dynamically added via JavaScript -->
-  </select>
-
-  <!-- Chapters List -->
-  <h3>Chapters:</h3>
-  <ul id="chapters-list">
-    <!-- Chapters will load here -->
-  </ul>
+  <script src="script.js"></script>
 </body>
-<script src = "script.js"></script>
 </html>
