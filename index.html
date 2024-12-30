@@ -7,53 +7,32 @@
   <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
-  <div class="quiz-container">
-    <h1 class="quiz-title">Quiz App</h1>
+  <header class="header">
+    <h1>Quiz App</h1>
+    <button id="theme-toggle" class="theme-toggle">
+      <img id="theme-icon" src="assets/light-icon.svg" alt="Toggle Theme" />
+    </button>
+  </header>
 
-    <!-- Branch Selection -->
+  <main class="main-container">
     <div class="dropdown-container">
-      <label for="branch" class="dropdown-label">Select Branch</label>
-      <select id="branch" class="dropdown">
-        <option value="civil">Civil</option>
-        <option value="ece">ECE</option>
-        <option value="cse">CSE</option>
-        <option value="ee">EE</option>
-        <option value="mech">Mechanical</option>
-      </select>
+      <label for="branch">Select Branch</label>
+      <select id="branch" class="dropdown"></select>
     </div>
 
-    <!-- Semester Selection -->
     <div class="dropdown-container">
-      <label for="semester" class="dropdown-label">Select Semester</label>
-      <select id="semester" class="dropdown">
-        <option value="sem1">Semester 1</option>
-        <option value="sem2">Semester 2</option>
-        <option value="sem3">Semester 3</option>
-        <option value="sem4">Semester 4</option>
-        <option value="sem5">Semester 5</option>
-        <option value="sem6">Semester 6</option>
-        <option value="sem7">Semester 7</option>
-        <option value="sem8">Semester 8</option>
-      </select>
+      <label for="semester">Select Semester</label>
+      <select id="semester" class="dropdown" disabled></select>
     </div>
 
-    <!-- Chapter Selection -->
     <div class="dropdown-container">
-      <label for="chapter" class="dropdown-label">Select Chapter</label>
-      <select id="chapter" class="dropdown">
-        <option value="chapter1">Chapter 1</option>
-        <option value="chapter2">Chapter 2</option>
-        <option value="chapter3">Chapter 3</option>
-      </select>
+      <label for="chapter">Select Chapter</label>
+      <select id="chapter" class="dropdown" disabled></select>
     </div>
 
-    <!-- Questions Section -->
-    <div id="questions-container" class="questions-container">
-      <!-- Questions will be dynamically inserted here -->
-    </div>
+    <div id="questions-container" class="questions-container"></div>
+  </main>
 
-  </div>
-  
   <script src="script.js"></script>
 </body>
 </html>
