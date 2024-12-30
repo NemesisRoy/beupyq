@@ -1,93 +1,69 @@
-/* General body styles */
+/* Base styles */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Main container styles */
-.quiz-container {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px;
+/* Theme variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f8f8f8;
+  --button-bg: #007bff;
 }
 
-/* Title styles */
-.quiz-title {
-  text-align: center;
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 1.5rem;
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg: #1e1e1e;
+  --button-bg: #444444;
 }
 
-/* Dropdown container styles */
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card-bg);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdowns */
 .dropdown-container {
-  margin-bottom: 1.5rem;
+  margin: 1rem 0;
 }
 
-/* Dropdown label styles */
-.dropdown-label {
-  font-size: 1rem;
-  color: #666;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-/* Dropdown menu styles */
 .dropdown {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 0.375rem;
   font-size: 1rem;
-  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-/* Questions container styles */
+/* Questions */
 .questions-container {
   margin-top: 2rem;
 }
 
-/* Question card styles */
 .question-card {
-  background-color: #fff;
+  background-color: var(--card-bg);
   padding: 1rem;
-  border-radius: 0.375rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.question-card p {
-  font-size: 1rem;
-  color: #333;
-}
-
-/* Solution button and styles */
+/* Solution button */
 .show-solution {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--button-bg);
+  color: #ffffff;
   padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 0.875rem;
-  margin-top: 1rem;
-  transition: background-color 0.2s;
-}
-
-.show-solution:hover {
-  background-color: #2980b9;
-}
-
-.solution-text {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  color: #27ae60;
-  display: none;
 }
