@@ -4,33 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz App</title>
-  <link href="styles.css" rel="stylesheet" />
+  <link href="index.css" rel="stylesheet">
 </head>
-<body>
-  <header class="header">
-    <h1>Quiz App</h1>
-    <button id="theme-toggle" class="theme-toggle">
-      <img id="theme-icon" src="assets/light-icon.svg" alt="Toggle Theme" />
+<body class="bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-800 font-poppins min-h-screen">
+  <header class="p-4 shadow-lg flex justify-between items-center bg-white dark:bg-gray-800 rounded-lg mx-4 mt-4">
+    <h1 class="text-xl font-bold text-gray-800 dark:text-white">Quiz App</h1>
+    <button id="theme-toggle" class="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg">
+      <img id="theme-icon" src="assets/light-icon.svg" alt="Toggle Theme" class="h-6">
     </button>
   </header>
 
-  <main class="main-container">
-    <div class="dropdown-container">
-      <label for="branch">Select Branch</label>
+  <main class="p-4">
+    <!-- Branch Selector -->
+    <div class="glass-card">
+      <label for="branch" class="block text-gray-800 dark:text-white mb-2">Select Branch</label>
       <select id="branch" class="dropdown"></select>
     </div>
 
-    <div class="dropdown-container">
-      <label for="semester">Select Semester</label>
+    <!-- Semester Selector -->
+    <div class="glass-card mt-4">
+      <label for="semester" class="block text-gray-800 dark:text-white mb-2">Select Semester</label>
       <select id="semester" class="dropdown" disabled></select>
     </div>
 
-    <div class="dropdown-container">
-      <label for="chapter">Select Chapter</label>
+    <!-- Chapter Selector -->
+    <div class="glass-card mt-4">
+      <label for="chapter" class="block text-gray-800 dark:text-white mb-2">Select Chapter</label>
       <select id="chapter" class="dropdown" disabled></select>
     </div>
 
-    <div id="questions-container" class="questions-container"></div>
+    <!-- Questions Container -->
+    <div id="questions-container" class="mt-6"></div>
   </main>
 
   <script src="script.js"></script>
