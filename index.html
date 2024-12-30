@@ -4,184 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz App</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.css">
+  <script src="https://cdn.jsdelivr.net/npm/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Global Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #e9ecef, #f8f9fa);
-      color: #333;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      min-height: 100vh;
-    }
-
-    /* Glass Effect */
-    .glass {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin: 10px;
-      width: 100%;
-      max-width: 500px;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    /* Dropdown and Buttons */
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-
-    select, button {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.7);
-      color: #333;
-      cursor: pointer;
-    }
-
-    select:focus, button:focus {
-      outline: none;
-      border: 1px solid #007bff;
-    }
-
-    button {
-      background: #007bff;
-      color: white;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #0056b3;
-    }
-
-    /* Icons Styling */
-    .icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      color: #007bff;
-      font-size: 30px;
-    }
-
-    .theme-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 10px;
-      border-radius: 50%;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    /* Questions */
-    .question {
-      margin-bottom: 15px;
-    }
-
-    .question p {
-      margin-bottom: 10px;
-    }
-
-    .solution {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 10px;
-      border-radius: 10px;
-      display: none;
-      margin-top: 10px;
-    }
-
-    /* Dark Mode */
-    .dark {
-      background: linear-gradient(135deg, #121212, #1c1c1c);
-      color: #f8f9fa;
-    }
-
-    .dark .glass {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .dark select, .dark button {
-      background: rgba(50, 50, 50, 0.8);
-      color: white;
-    }
-
-    .dark .theme-toggle {
-      background: rgba(255, 255, 255, 0.7);
-      color: black;
     }
   </style>
 </head>
-<body>
-  <button class="theme-toggle" id="theme-toggle">
-    <ion-icon name="moon"></ion-icon>
-  </button>
+<body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+  <div class="min-h-screen flex flex-col justify-center items-center py-6 px-4 sm:px-6 lg:px-8">
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="absolute top-4 right-4 p-3 bg-gray-700 text-white rounded-full focus:outline-none">
+      <ion-icon name="moon" class="text-xl"></ion-icon>
+    </button>
 
-  <h1>Quiz App</h1>
+    <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 max-w-lg w-full space-y-6">
+      <h1 class="text-center text-2xl font-semibold">Select Your Quiz Options</h1>
 
-  <!-- Branch Dropdown -->
-  <div class="glass">
-    <div class="icon">
-      <ion-icon name="school"></ion-icon>
+      <!-- Branch Dropdown -->
+      <div class="mb-4">
+        <label for="branch" class="block text-lg font-medium mb-2">Select Branch</label>
+        <select id="branch" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="" disabled selected>Select Branch</option>
+        </select>
+      </div>
+
+      <!-- Semester Dropdown -->
+      <div class="mb-4">
+        <label for="semester" class="block text-lg font-medium mb-2">Select Semester</label>
+        <select id="semester" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+          <option value="" disabled selected>Select Semester</option>
+        </select>
+      </div>
+
+      <!-- Chapter Dropdown -->
+      <div class="mb-4">
+        <label for="chapter" class="block text-lg font-medium mb-2">Select Chapter</label>
+        <select id="chapter" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+          <option value="" disabled selected>Select Chapter</option>
+        </select>
+      </div>
+
+      <!-- Start Quiz Button -->
+      <div class="flex justify-center">
+        <button id="start-quiz" class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300">
+          Start Quiz
+        </button>
+      </div>
+
     </div>
-    <label for="branch">Select Branch</label>
-    <select id="branch">
-      <option value="" disabled selected>Select Branch</option>
-    </select>
-  </div>
 
-  <!-- Semester Dropdown -->
-  <div class="glass">
-    <div class="icon">
-      <ion-icon name="calendar"></ion-icon>
-    </div>
-    <label for="semester">Select Semester</label>
-    <select id="semester" disabled>
-      <option value="" disabled selected>Select Semester</option>
-    </select>
+    <!-- Questions Container -->
+    <div id="questions-container" class="hidden mt-8 max-w-lg w-full"></div>
   </div>
-
-  <!-- Chapter Dropdown -->
-  <div class="glass">
-    <div class="icon">
-      <ion-icon name="book"></ion-icon>
-    </div>
-    <label for="chapter">Select Chapter</label>
-    <select id="chapter" disabled>
-      <option value="" disabled selected>Select Chapter</option>
-    </select>
-  </div>
-
-  <!-- Questions -->
-  <div id="questions-container"></div>
 
   <script>
     const branchDropdown = document.getElementById("branch");
@@ -225,6 +101,7 @@
     }
 
     function displayQuestions(data) {
+      questionsContainer.classList.remove("hidden");
       questionsContainer.innerHTML = "";
       const branch = branchDropdown.value;
       const semester = semesterDropdown.value;
@@ -233,10 +110,14 @@
 
       questions.forEach(q => {
         questionsContainer.innerHTML += `
-          <div class="glass question">
-            <p><strong>Q${q.question_id}:</strong> ${q.question_text}</p>
-            <button onclick="toggleSolution(${q.question_id})">Show Solution</button>
-            <div id="solution-${q.question_id}" class="solution">${q.solution}</div>
+          <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md mb-4">
+            <p class="font-semibold">Q${q.question_id}: ${q.question_text}</p>
+            <button class="mt-2 text-blue-500" onclick="toggleSolution(${q.question_id})">
+              Show Solution
+            </button>
+            <div id="solution-${q.question_id}" class="solution mt-3 hidden">
+              <p>${q.solution}</p>
+            </div>
           </div>
         `;
       });
@@ -244,13 +125,14 @@
 
     function toggleSolution(id) {
       const solution = document.getElementById(`solution-${id}`);
-      solution.style.display = solution.style.display === "block" ? "none" : "block";
+      solution.classList.toggle("hidden");
     }
 
     function capitalize(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    // Theme Toggle
     themeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark");
     });
