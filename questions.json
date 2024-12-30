@@ -1,95 +1,184 @@
 {
-  "app": {
-    "home_page": {
-      "chapter_list": {
-        "chapter_name": "Chapter 1",
-        "questions": [
-          {
-            "question_id": 1,
-            "question_text": "Define the following terms with examples: a) Morpheme b) Prefix c) Homograms d) Auxiliary Verb e) IPA"
-          },
-          {
-            "question_id": 2,
-            "question_text": "What is the root word of 'unbreakable'?"
-          },
-          {
-            "question_id": 3,
-            "question_text": "Identify the root word of 'happiness'."
-          },
-          {
-            "question_id": 4,
-            "question_text": "What is the root word of 'disappear'?"
-          },
-          {
-            "question_id": 5,
-            "question_text": "Identify the root word of 'unemployment'."
-          },
-          {
-            "question_id": 6,
-            "question_text": "What is the root word of 'irresponsible'?"
-          },
-          {
-            "question_id": 7,
-            "question_text": "What are the morphemes in the word 'unhappiness'?"
-          },
-          {
-            "question_id": 8,
-            "question_text": "Identify the morphemes in the word 'irresponsibly'."
-          },
-          {
-            "question_id": 9,
-            "question_text": "What are the morphemes in the word 'disagreement'?"
-          },
-          {
-            "question_id": 10,
-            "question_text": "Identify the morphemes in the word 'unbreakability'."
-          },
-          {
-            "question_id": 11,
-            "question_text": "What are the morphemes in the word 'environmental'?"
-          },
-          {
-            "question_id": 12,
-            "question_text": "What is a synonym for the word 'HUGE'?"
-          },
-          {
-            "question_id": 13,
-            "question_text": "Identify a synonym for the word 'HAPPY'."
-          },
-          {
-            "question_id": 14,
-            "question_text": "What is a synonym for the word 'DIFFICULT'?"
-          },
-          {
-            "question_id": 15,
-            "question_text": "Identify a synonym for the word 'BEAUTIFUL'."
-          },
-          {
-            "question_id": 16,
-            "question_text": "What is a synonym for the word 'FAST'?"
-          },
-          {
-            "question_id": 17,
-            "question_text": "What is an antonym for the word 'HOT'?"
-          },
-          {
-            "question_id": 18,
-            "question_text": "Identify an antonym for the word 'BIG'."
-          },
-          {
-            "question_id": 19,
-            "question_text": "What is an antonym for the word 'EASY'?"
-          },
-          {
-            "question_id": 20,
-            "question_text": "Identify an antonym for the word 'OLD'."
-          },
-          {
-            "question_id": 21,
-            "question_text": "What is an antonym for the word 'FULL'?"
+  "branches": {
+    "civil": {
+      "semesters": {
+        "sem1": {
+          "chapters": {
+            "chapter1": [
+              {
+                "question_id": 1,
+                "question_text": "What is the importance of surveying in civil engineering?",
+                "solution": "Surveying helps determine land features, boundaries, and measurements for construction planning."
+              },
+              {
+                "question_id": 2,
+                "question_text": "Define leveling and its purpose.",
+                "solution": "Leveling is the process of determining the height of one point relative to another."
+              }
+            ],
+            "chapter2": [
+              {
+                "question_id": 1,
+                "question_text": "Explain the properties of cement.",
+                "solution": "Cement properties include fineness, setting time, and strength."
+              },
+              {
+                "question_id": 2,
+                "question_text": "What are the different types of cement?",
+                "solution": "Types include OPC, PPC, and rapid hardening cement."
+              }
+            ]
           }
-        ]
+        },
+        "sem2": {
+          "chapters": {
+            "chapter1": [
+              {
+                "question_id": 1,
+                "question_text": "What is a beam? Explain its types.",
+                "solution": "A beam is a structural member designed to carry loads; types include cantilever and simply supported beams."
+              },
+              {
+                "question_id": 2,
+                "question_text": "Define the term bending moment.",
+                "solution": "Bending moment refers to the internal moment that causes a beam to bend."
+              }
+            ],
+            "chapter2": [
+              {
+                "question_id": 1,
+                "question_text": "Explain the concept of shear stress.",
+                "solution": "Shear stress is the force per unit area that acts parallel to a surface."
+              },
+              {
+                "question_id": 2,
+                "question_text": "What are the different types of stresses in materials?",
+                "solution": "Types include tensile stress, compressive stress, and shear stress."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "cse": {
+      "semesters": {
+        "sem1": {
+          "chapters": {
+            "chapter1": [
+              {
+                "question_id": 1,
+                "question_text": "What is an algorithm?",
+                "solution": "An algorithm is a step-by-step procedure for solving a problem."
+              },
+              {
+                "question_id": 2,
+                "question_text": "Explain the difference between linear and binary search.",
+                "solution": "Linear search checks every element, while binary search divides the array into halves."
+              }
+            ],
+            "chapter2": [
+              {
+                "question_id": 1,
+                "question_text": "Define data structure and its types.",
+                "solution": "Data structures organize data; types include arrays, linked lists, stacks, and queues."
+              },
+              {
+                "question_id": 2,
+                "question_text": "What is a stack? Explain its operations.",
+                "solution": "A stack is a LIFO data structure; operations include push, pop, and peek."
+              }
+            ]
+          }
+        },
+        "sem2": {
+          "chapters": {
+            "chapter1": [
+              {
+                "question_id": 1,
+                "question_text": "What is object-oriented programming?",
+                "solution": "OOP is a programming paradigm based on objects and classes."
+              },
+              {
+                "question_id": 2,
+                "question_text": "Explain the concept of inheritance in OOP.",
+                "solution": "Inheritance allows a class to use properties and methods of another class."
+              }
+            ],
+            "chapter2": [
+              {
+                "question_id": 1,
+                "question_text": "What is polymorphism?",
+                "solution": "Polymorphism allows a method to perform differently based on the object."
+              },
+              {
+                "question_id": 2,
+                "question_text": "What is the difference between method overloading and overriding?",
+                "solution": "Overloading occurs in the same class with different parameters; overriding occurs in a subclass."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "mechanical": {
+      "semesters": {
+        "sem1": {
+          "chapters": {
+            "chapter1": [
+              {
+                "question_id": 1,
+                "question_text": "What is thermodynamics?",
+                "solution": "Thermodynamics is the study of energy, heat, and their transformations."
+              },
+              {
+                "question_id": 2,
+                "question_text": "State the first law of thermodynamics.",
+                "solution": "Energy cannot be created or destroyed; it can only change forms."
+              }
+            ],
+            "chapter2": [
+              {
+                "question_id": 1,
+                "question_text": "What is the difference between heat and temperature?",
+                "solution": "Heat is energy transfer due to temperature difference; temperature measures thermal energy."
+              },
+              {
+                "question_id": 2,
+                "question_text": "What are the modes of heat transfer?",
+                "solution": "Modes include conduction, convection, and radiation."
+              }
+            ]
+          }
+        },
+        "sem2": {
+          "chapters": {
+            "chapter1": [
+              {
+                "question_id": 1,
+                "question_text": "Define the term 'lathe machine'.",
+                "solution": "A lathe machine shapes workpieces by rotating them against cutting tools."
+              },
+              {
+                "question_id": 2,
+                "question_text": "What are the types of lathe machines?",
+                "solution": "Types include engine lathe, turret lathe, and CNC lathe."
+              }
+            ],
+            "chapter2": [
+              {
+                "question_id": 1,
+                "question_text": "What is gear ratio?",
+                "solution": "Gear ratio is the ratio of the number of teeth on two gears."
+              },
+              {
+                "question_id": 2,
+                "question_text": "What is the difference between spur and helical gears?",
+                "solution": "Spur gears have straight teeth; helical gears have angled teeth for smoother operation."
+              }
+            ]
+          }
+        }
       }
     }
   }
-}
+              }
