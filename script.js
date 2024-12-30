@@ -52,9 +52,9 @@ function displayQuestions() {
   const questions = quizData.branches[branch].semesters[semester].chapters[chapter];
   questionsContainer.innerHTML = questions.map(q => `
     <div class="question-card">
-      <p>${q.question_id}. ${q.question_text}</p>
+      <p><strong>Q${q.question_id}:</strong> ${q.question_text}</p>
       <button class="show-solution" onclick="toggleSolution(${q.question_id})">Show Solution</button>
-      <p id="solution-${q.question_id}" style="display:none;">${q.solution}</p>
+      <p id="solution-${q.question_id}" class="hidden mt-2">${q.solution}</p>
     </div>
   `).join("");
 }
@@ -62,12 +62,12 @@ function displayQuestions() {
 // Toggle solution visibility
 function toggleSolution(questionId) {
   const solutionElement = document.getElementById(`solution-${questionId}`);
-  solutionElement.style.display = solutionElement.style.display === "none" ? "block" : "none";
+  solutionElement.classList.toggle("hidden");
 }
 
 // Theme toggle
 document.getElementById("theme-toggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
+  document.body.classList.toggle("dark");
   const themeIcon = document.getElementById("theme-icon");
-  themeIcon.src = document.body.classList.contains("dark-mode") ? "assets/dark-icon.svg" : "assets/light-icon.svg";
+  themeIcon.src = document.body.classList.contains("dark") ? "assets/dark-icon.svg" : "assets/light-icon.svg";
 });
