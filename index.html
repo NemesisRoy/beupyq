@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.css">
   <style>
     /* Global Reset */
     * {
@@ -14,139 +15,143 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f8f9fa;
+      background: linear-gradient(135deg, #e9ecef, #f8f9fa);
       color: #333;
       line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 20px;
+      min-height: 100vh;
+    }
+
+    /* Glass Effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 10px;
+      width: 100%;
+      max-width: 500px;
     }
 
     h1 {
       text-align: center;
+      font-size: 24px;
       margin-bottom: 20px;
     }
 
-    /* Card Styles */
-    .card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .card label {
+    /* Dropdown and Buttons */
+    label {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: bold;
     }
 
-    /* Dropdowns */
-    select {
+    select, button {
       width: 100%;
       padding: 10px;
       font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #fff;
-      cursor: pointer;
-      transition: border-color 0.3s;
-    }
-
-    select:focus {
-      border-color: #007bff;
-      outline: none;
-    }
-
-    /* Buttons */
-    button {
-      display: inline-block;
-      padding: 10px 15px;
-      font-size: 16px;
-      color: white;
-      background-color: #007bff;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #333;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
 
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    .btn-outline {
-      background: none;
-      color: #007bff;
+    select:focus, button:focus {
+      outline: none;
       border: 1px solid #007bff;
     }
 
-    .btn-outline:hover {
+    button {
       background: #007bff;
       color: white;
+      transition: background 0.3s ease;
     }
 
-    /* Questions Section */
-    .question {
-      margin-bottom: 20px;
+    button:hover {
+      background: #0056b3;
     }
 
-    .question p {
-      font-size: 16px;
+    /* Icons Styling */
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 10px;
-    }
-
-    .solution {
-      background: #f1f1f1;
-      padding: 10px;
-      border-radius: 5px;
-      display: none;
+      color: #007bff;
+      font-size: 30px;
     }
 
     .theme-toggle {
       position: fixed;
       top: 20px;
       right: 20px;
-      background-color: #333;
+      background: rgba(0, 0, 0, 0.7);
       color: white;
+      padding: 10px;
+      border-radius: 50%;
       border: none;
-      border-radius: 5px;
+      font-size: 24px;
       cursor: pointer;
-      padding: 10px 15px;
     }
 
+    /* Questions */
+    .question {
+      margin-bottom: 15px;
+    }
+
+    .question p {
+      margin-bottom: 10px;
+    }
+
+    .solution {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 10px;
+      display: none;
+      margin-top: 10px;
+    }
+
+    /* Dark Mode */
     .dark {
-      background-color: #121212;
+      background: linear-gradient(135deg, #121212, #1c1c1c);
       color: #f8f9fa;
     }
 
-    .dark .card {
-      background: #1e1e1e;
-      border-color: #333;
+    .dark .glass {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .dark select {
-      background: #333;
-      color: #f8f9fa;
-      border-color: #555;
+    .dark select, .dark button {
+      background: rgba(50, 50, 50, 0.8);
+      color: white;
     }
 
-    .dark button {
-      background-color: #444;
-    }
-
-    .dark button:hover {
-      background-color: #222;
+    .dark .theme-toggle {
+      background: rgba(255, 255, 255, 0.7);
+      color: black;
     }
   </style>
 </head>
 <body>
-  <button class="theme-toggle" id="theme-toggle">Toggle Theme</button>
+  <button class="theme-toggle" id="theme-toggle">
+    <ion-icon name="moon"></ion-icon>
+  </button>
 
   <h1>Quiz App</h1>
 
   <!-- Branch Dropdown -->
-  <div class="card">
+  <div class="glass">
+    <div class="icon">
+      <ion-icon name="school"></ion-icon>
+    </div>
     <label for="branch">Select Branch</label>
     <select id="branch">
       <option value="" disabled selected>Select Branch</option>
@@ -154,7 +159,10 @@
   </div>
 
   <!-- Semester Dropdown -->
-  <div class="card">
+  <div class="glass">
+    <div class="icon">
+      <ion-icon name="calendar"></ion-icon>
+    </div>
     <label for="semester">Select Semester</label>
     <select id="semester" disabled>
       <option value="" disabled selected>Select Semester</option>
@@ -162,7 +170,10 @@
   </div>
 
   <!-- Chapter Dropdown -->
-  <div class="card">
+  <div class="glass">
+    <div class="icon">
+      <ion-icon name="book"></ion-icon>
+    </div>
     <label for="chapter">Select Chapter</label>
     <select id="chapter" disabled>
       <option value="" disabled selected>Select Chapter</option>
@@ -173,107 +184,76 @@
   <div id="questions-container"></div>
 
   <script>
-    // Dummy JSON Data
-    const quizData = {
-      branches: {
-        "civil": {
-          semesters: {
-            "sem1": {
-              chapters: {
-                "chapter1": [
-                  { question_id: 1, question_text: "What is cement?", solution: "Cement is a binder substance." },
-                  { question_id: 2, question_text: "What is concrete?", solution: "Concrete is a composite material." }
-                ],
-                "chapter2": [
-                  { question_id: 3, question_text: "What is reinforcement?", solution: "Reinforcement adds strength." },
-                  { question_id: 4, question_text: "Define tensile strength.", solution: "Tensile strength is resistance to tension." }
-                ]
-              }
-            },
-            "sem2": {
-              chapters: {
-                "chapter1": [
-                  { question_id: 5, question_text: "What is soil?", solution: "Soil is natural earth material." },
-                  { question_id: 6, question_text: "What is clay?", solution: "Clay is a fine-grained soil." }
-                ]
-              }
-            }
-          }
-        }
-      }
-    };
-
     const branchDropdown = document.getElementById("branch");
     const semesterDropdown = document.getElementById("semester");
     const chapterDropdown = document.getElementById("chapter");
     const questionsContainer = document.getElementById("questions-container");
+    const themeToggle = document.getElementById("theme-toggle");
 
-    // Populate Branch Dropdown
-    function populateBranches() {
-      const branches = Object.keys(quizData.branches);
-      branchDropdown.innerHTML += branches.map(branch => `<option value="${branch}">${capitalize(branch)}</option>`).join("");
-      branchDropdown.addEventListener("change", populateSemesters);
+    // Fetch data from questions.json
+    fetch('questions.json')
+      .then(response => response.json())
+      .then(data => initializeQuiz(data));
+
+    function initializeQuiz(quizData) {
+      populateBranches(quizData);
     }
 
-    // Populate Semester Dropdown
-    function populateSemesters() {
+    function populateBranches(data) {
+      const branches = Object.keys(data.branches);
+      branchDropdown.innerHTML += branches.map(branch => `<option value="${branch}">${capitalize(branch)}</option>`).join("");
+      branchDropdown.addEventListener("change", () => populateSemesters(data));
+    }
+
+    function populateSemesters(data) {
       semesterDropdown.disabled = false;
       const branch = branchDropdown.value;
-      const semesters = Object.keys(quizData.branches[branch].semesters);
+      const semesters = Object.keys(data.branches[branch].semesters);
       semesterDropdown.innerHTML = `<option value="" disabled selected>Select Semester</option>` +
         semesters.map(sem => `<option value="${sem}">${capitalize(sem)}</option>`).join("");
-      semesterDropdown.addEventListener("change", populateChapters);
+      semesterDropdown.addEventListener("change", () => populateChapters(data));
     }
 
-    // Populate Chapter Dropdown
-    function populateChapters() {
+    function populateChapters(data) {
       chapterDropdown.disabled = false;
       const branch = branchDropdown.value;
       const semester = semesterDropdown.value;
-      const chapters = Object.keys(quizData.branches[branch].semesters[semester].chapters);
+      const chapters = Object.keys(data.branches[branch].semesters[semester].chapters);
       chapterDropdown.innerHTML = `<option value="" disabled selected>Select Chapter</option>` +
         chapters.map(chap => `<option value="${chap}">${capitalize(chap)}</option>`).join("");
-      chapterDropdown.addEventListener("change", displayQuestions);
+      chapterDropdown.addEventListener("change", () => displayQuestions(data));
     }
 
-    // Display Questions
-    function displayQuestions() {
+    function displayQuestions(data) {
       questionsContainer.innerHTML = "";
       const branch = branchDropdown.value;
       const semester = semesterDropdown.value;
       const chapter = chapterDropdown.value;
-      const questions = quizData.branches[branch].semesters[semester].chapters[chapter];
+      const questions = data.branches[branch].semesters[semester].chapters[chapter];
 
       questions.forEach(q => {
         questionsContainer.innerHTML += `
-          <div class="card question">
+          <div class="glass question">
             <p><strong>Q${q.question_id}:</strong> ${q.question_text}</p>
-            <button class="btn-outline" onclick="toggleSolution(${q.question_id})">Show Solution</button>
+            <button onclick="toggleSolution(${q.question_id})">Show Solution</button>
             <div id="solution-${q.question_id}" class="solution">${q.solution}</div>
           </div>
         `;
       });
     }
 
-    // Toggle Solution
     function toggleSolution(id) {
       const solution = document.getElementById(`solution-${id}`);
       solution.style.display = solution.style.display === "block" ? "none" : "block";
     }
 
-    // Capitalize Function
     function capitalize(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    // Theme Toggle
-    const themeToggle = document.getElementById("theme-toggle");
     themeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark");
     });
-
-    // Initialize
-    populateBranches();
   </script>
 </body>
 </html>
